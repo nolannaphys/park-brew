@@ -1,5 +1,22 @@
-// API key for National Parks Database
+// parks variables
 var apiKey = 'nsqq7nIIHbeaGT4DasDU3QLDbqazbcJTW8zA7SWb'
+var stateValue = $('#stateInput');
+var parkResults = $('#park-results')
+
+//JS for National Parks API
+$('#stateSearchButton').on('click', function(event) {
+    var state = stateValue.val();
+    parkResults.textContent = stateValue;
+    park(stateValue)
+
+})
+
+// fetch for parks API data 
+function park(stateValue) {
+    fetch
+}
+
+
 var cityValue = $('#cityInput')
 
 // this will define the results container to connect with html
