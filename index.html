@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,14 +8,47 @@
     <title>Park Brew</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
+
 <body>
-    <!-- HTML for Brewery Search Field -->
-    <div>
-        <h3>Search by city:</h3>
-        <input id="searchInput" placeholder="City Name">
-        <button id="searchButton">Search</button>
-    </div>
+    <!-- adds picture of beer outside -->
+    <header>
+        <img src="./assets/images/beer-outside.jpeg" alt="beer outside on a park bench overlooking mountains">
+        <!-- header and mission statement -->
+        <h1>Park Brew</h1>
+        <p>This is a service for people who love to hike and have a good, refreshing beer afterwards.</p>
+    </header>
+    <!-- the following lines create search buttons -->
+    <section class="buttons">
+        <div>
+            <h3>Search by State</h3>
+            <input id="stateInput" placeholder="Enter State Name">
+            <button id="stateSearchButton">Search</button>
+        </div>
+        <!-- HTML for Brewery Search Field -->
+        <div>
+            <h3>Search by city:</h3>
+            <input id="cityInput" placeholder="Enter City Name">
+            <button id="citySearchButton">Search</button>
+        </div>
+    </section>
+    <!-- results section -->
+    <section class="results">  
+        <div id="park-results">
+        </div>  
+        <div id="brewery-results">
+        </div>  
+    </section>
+     <!-- favorites section -->
+     <section class="favorites">  
+     <div id="park-favorites">
+     </div>  
+     <div id="brewery-favorites">
+     </div>  
+ </section>
+    
+    
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js%22%3E"></script> -->
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
