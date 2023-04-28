@@ -1,0 +1,32 @@
+/* img {
+    opacity: 0.75;
+} */
+
+#beer-background {
+    opacity: 0.75;
+    height: 800px;
+    width: 100%;
+    background-image: url('../images/beer-outside.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* WHAT IS HAPPENING HERE */
+.div.background {
+    background: url('../images/beer-outside.jpeg') repeat;
+    border: 2px solid black;
+  }
+  
+  div.transbox {
+    margin: 30px;
+    background-color: #ffffff;
+    border: 1px solid black;
+    opacity: 0.6;
+  }
+  
+  div.transbox p {
+    margin: 5%;
+    font-weight: bold;
+    color: #000000;
+  }
+  /* ^^^^^ */

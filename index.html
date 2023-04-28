@@ -6,19 +6,65 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Park Brew</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 
 <body>
-    <!-- adds picture of beer outside -->
     <header>
-        <img src="./assets/images/beer-outside.jpeg" alt="beer outside on a park bench overlooking mountains">
         <!-- header and mission statement -->
         <h1>Park Brew</h1>
         <p>This is a service for people who love to hike and have a good, refreshing beer afterwards.</p>
     </header>
-    <!-- the following lines create search buttons -->
-    <section class="buttons">
+
+    <div class="background">
+        <div class="transbox">
+          <p>This is some text that is placed in the transparent box.</p>
+        </div>
+      </div>
+
+    <figure id="beer-background" alt="beer outside on a park bench overlooking mountains"></figure>
+    <!-- adds picture of beer outside -->
+    <!-- <img src="./assets/images/beer-outside.jpeg" alt="beer outside on a park bench overlooking mountains"> -->
+
+    <div class="columns">
+        <div class="column">
+            <p class="bd-notification is-info">First column</p>
+            <section class="buttons">
+                <div>
+                    <h3>Search by city:</h3>
+                    <input id="cityInput" placeholder="Enter City Name">
+                    <h3>Search by State Code:</h3>
+                    <input id="stateInput" placeholder="Enter State Code">
+                    <button id="searchButton">Search</button>
+                </div>
+            </section>
+            <div class="columns is-mobile">
+                <div class="column is-3">
+                    <p class="bd-notification is-info">National Parks</p>
+                    <section class="results">
+                        <div id="park-results">
+                        </div>
+                    </section>
+                </div>
+                <div class="column is-3">
+                    <p class="bd-notification is-info">Saved Parks</p>
+                    <section class="results">
+                        <div id="brewery-results">
+                        </div>
+                    </section>
+                </div>
+                <div class="column is-3">
+                    <p class="bd-notification is-info">Breweries</p>
+                </div>
+                <div class="column is-3">
+                    <p class="bd-notification is-info">Saved</p>
+                </div>
+            </div>
+        </div>
+        <!-- the following lines create search buttons -->
+        <!-- <section class="buttons">
         <div>
             <h3>Search by city:</h3>
             <input id="cityInput" placeholder="Enter City Name">
@@ -26,25 +72,25 @@
             <input id="stateInput" placeholder="Enter State Code">
             <button id="searchButton">Search</button>
         </div>
-    </section>
-    <!-- results section -->
-    <section class="results">  
-        <div id="park-results">
-        </div>  
-        <div id="brewery-results">
-        </div>  
-    </section>
-     <!-- favorites section -->
-     <section class="favorites">  
-     <div id="park-favorites">
-     </div>  
-     <div id="brewery-favorites">
-     </div>  
- </section>
-    
-    
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js%22%3E"></script> -->
-    <script src="./assets/js/script.js"></script>
+    </section> -->
+        <!-- results section -->
+        <section class="results">
+            <div id="park-results">
+            </div>
+            <div id="brewery-results">
+            </div>
+        </section>
+        <!-- favorites section -->
+        <section class="favorites">
+            <div id="park-favorites">
+            </div>
+            <div id="brewery-favorites">
+            </div>
+        </section>
+
+
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js%22%3E"></script> -->
+        <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
