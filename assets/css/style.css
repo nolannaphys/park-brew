@@ -1,3 +1,24 @@
+/* header font */
+@import url('https://fonts.googleapis.com/css2?family=Ysabeau&display=swap%27');
+/* rest of page font */
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap%27');
+*{
+    font-family:"ysabeau";
+}
+h1{
+    font-family:"shrikhand";
+    font-size: 110px;
+}
+
+.header-text{
+    padding-left: 310 px;
+    border: 30 px;
+    
+}
+
+.is-info{
+    border: solid black 5px;
+}
 /* img {
     opacity: 0.75;
 } */
@@ -46,12 +67,12 @@
     height: 200px;
 
   }
-  .header-text {
+  /* .header-text {
     /* float: right; */
     /* padding-left: 100px;
     border: 10px; */
-    float: center;
-  }
+    /* float: center;
+  } */ 
 
   .column {
     display: block;
