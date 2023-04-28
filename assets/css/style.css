@@ -2,17 +2,17 @@
     opacity: 0.75;
 } */
 
-#beer-background {
+/* #beer-background {
     opacity: 0.75;
     height: 800px;
     width: 100%;
     background-image: url('../images/beer-outside.jpeg');
     background-size: cover;
     background-position: center;
-}
+} */
 
 /* WHAT IS HAPPENING HERE */
-.div.background {
+/* .div.background {
     background: url('../images/beer-outside.jpeg') repeat;
     border: 2px solid black;
   }
@@ -28,5 +28,31 @@
     margin: 5%;
     font-weight: bold;
     color: #000000;
-  }
+  } */
   /* ^^^^^ */
+
+  /* body {
+    background-color: forestgreen;
+  } */
+
+  img{
+    float: left;
+    height: 200px;
+    width: 300px;
+    /* padding-right: 100px; */
+    
+  }
+  header{
+    height: 200px;
+
+  }
+  .header-text {
+    /* float: right; */
+    /* padding-left: 100px;
+    border: 10px; */
+    float: center;
+  }
+
+  .column {
+    display: block;
+  }
