@@ -1,61 +1,127 @@
 // parks variables
-var apiKey = 'nsqq7nIIHbeaGT4DasDU3QLDbqazbcJTW8zA7SWb'
-var parkResults = document.querySelector("#park-results")
-//var parkResults = $('#park-results')
-var brewResults = document.querySelector("#brewery-results")
+var parkResults = $("#park-results");
+var brewResults = $("#brewery-results");
+var parkFavs = $('#park-favorites');
+var brewFavs = $('#brewery-favorites');
+var parkArray = [];
 
 // click event for search button 
 $("#searchButton").on("click", function (event) {
     event.preventDefault();
-
+    //open modal
     if ($('#cityInput').val() === '' || $('#stateInput').val() === '') {
-        alert ('Please enter your city AND state code.') //replace with modal
+        $('#input-modal').addClass('is-active');
         return;
     }
-
-    parkResults.setAttribute('style', 'visibility:visible');
-    brewResults.setAttribute('style', 'visibility:visible');
+    //fetch data
+    parkResults.attr('style', 'visibility:visible');
+    brewResults.attr('style', 'visibility:visible');
+    var cityValue = $('#cityInput').val();
+    var stateValue = $('#stateInput').val();
+    park(stateValue, cityValue);
+    brewery(cityValue);
 
     // How to clear search results after second click???
     // parkResults.innerHTML = '';
     // brewResults.innerHTML = '';
-
-    var cityValue = $('#cityInput').val();
-    var stateValue = $('#stateInput').val();
-    park(stateValue, cityValue)
-    brewery(cityValue)
-    
 })
 
+//close alert modal for empty city or state
+$('.modal-close').on('click', function() {
+    $('.modal').removeClass('is-active')
+});
 
-// fetch for parks API data 
+//clear out input fields on click 
+$('#cityInput').on('click', function() {
+    $('#cityInput').val('');
+});
+
+$('#stateInput').on('click', function() {
+    $('#stateInput').val('');
+});
+
+// fetch for parks API data to append to webpage
+// `https://developer.nps.gov/api/v1/parks?stateCode=${stateValue}&limit=5&q=${cityValue}&api_key=nsqq7nIIHbeaGT4DasDU3QLDbqazbcJTW8zA7SWb`
 function park(stateValue, cityValue) {
-    fetch (`https://developer.nps.gov/api/v1/parks?stateCode=${stateValue}&limit=5&q=${cityValue}&api_key=nsqq7nIIHbeaGT4DasDU3QLDbqazbcJTW8zA7SWb`)
-    .then (function (response) {
-        return response.json();
-    })
-    .then (function (data) {
-        // console.log(data);
-        // console.log(data.data[0].fullName);
-        // console.log(data.data[0].addresses[0].line1)
+    fetch(`https://developer.nps.gov/api/v1/parks?stateCode=${stateValue}&q=${cityValue}&api_key=nsqq7nIIHbeaGT4DasDU3QLDbqazbcJTW8zA7SWb`)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+            // console.log(data.data[0].fullName);
+            // console.log(data.data[0].addresses[0].line1)
 
-        var prUl = document.querySelector('#park-results ul')
+            var prUl = $('#park-results ul');
 
-        for (var i = 0; i < data.data.length; i++) {
-            // console.log(data.data[i]);
-            var prliEl = document.createElement('li');
-            var praEl = document.createElement('a');
-            praEl.textContent = data.data[i].fullName;
-            praEl.href = data.data[i].url;
-            prUl.appendChild(prliEl);
-            prliEl.appendChild(praEl);
-            //append save button
-        }
+            // var i = 0; i < data.data.length; i++
+            for (var i = 0; i < 5; i++) {
+                // var random = data.data[Math.floor(Math.random()*data.data.length)]; //its repeating values from the array
+                // console.log(random);
+                var prliEl = $('<li>');
+                var praEl = $('<a>');
+                var prbtnEl = $('<button>');
+                var priEl = $('<i>');
+                praEl.text(data.data[i].fullName);
+                praEl.attr('href', data.data[i].url);
+                praEl.attr('target', '_blank'); 
+                prbtnEl.text('Save');
+                prbtnEl.addClass('park-save')
+                priEl.addClass('fas', 'fa-save'); //save icon not showing up??????
+                prUl.append(prliEl);
+                prliEl.append(praEl);
+                prliEl.append(prbtnEl);
+                prbtnEl.append(priEl);
 
-        //parkResults.textContent = data.data[0].fullName
-        // parkResults.textContent = data.data[0].addresses[0].line1 + ' ' + data.data[0].addresses[0].city
-        // parkResults.textContent = data.data[0].url
-    })
+                //display try the closest metropolitan city??????? 
+                if (data.data === []) {
+                    // $('#empty-data-modal').addClass('is-active'); //is modal better option?????
+                    var prpEl = $('<p>');
+                    prpEl.text('Please try to broaden your search to the closest metropolitan area.');
+                    $('#park-results').append(prpEl);
+                }
+
+                //click event for park save buttons
+                prbtnEl.on('click', function (event) {
+                    event.preventDefault;
+                    var parks = {
+                        name: this.previousElementSibling.textContent,
+                        url: this.previousElementSibling.href
+                    };
+                    parkArray.push(parks);
+                    localStorage.setItem('local-parkArray', JSON.stringify(parkArray));
+                    renderParks();
+                })
+            }
+        })
+}
+
+//get park information out of local storage 
+function getParks() {
+    var storedParks = JSON.parse(localStorage.getItem('local-parkArray'));
+    if (storedParks !== null) {
+        parkArray = storedParks;
+    } else {
+        return;
+    }
+    renderParks();
+}
+getParks();
+
+//render saved parks into #park-favorites section of webpage 
+function renderParks() {
+    var pfUl = $('#park-favorites ul')
+    for (var i = 0; i < parkArray.length; i++) {
+        var park = parkArray[i];
+        var pfliEl = $('<li>');
+        var pfaEl = $('<a>');
+        pfaEl.text(park.name);
+        pfaEl.attr('href', park.url);
+        pfaEl.attr('target', '_blank');
+        pfUl.append(pfliEl);
+        pfliEl.append(pfaEl);
+    }
+
 }
 
 // get values from brewery API once the city is entered and button is clicked
@@ -73,7 +139,7 @@ function brewery(cityValue) {
 
             var brUl = document.querySelector('#brewery-results ul')
 
-            for (var i = 0; i < data.length; i ++){
+            for (var i = 0; i < data.length; i++) {
                 // console.log(data[i]);
                 var brliEl = document.createElement('li');
                 var braEl = document.createElement('a');
@@ -85,5 +151,4 @@ function brewery(cityValue) {
         })
 }
 
-// this will define the results container to connect with html
 

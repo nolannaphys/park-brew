@@ -34,19 +34,16 @@
 
     <br>
 
-
-
     <div class="columns">
         <div class="column">
-            <p class="description">This is a service for people who love to hike and have a good, refreshing beer afterwards.</p>
+            <p class="description">This is a service for people who love to hike and have a good, refreshing beer
+                afterwards.</p>
             <section class="buttons">
-                <div>
-                    <h3>Search by city:</h3>
-                    <input id="cityInput" placeholder="Enter City Name">
-                    <h3>Search by State Code:</h3>
-                    <input id="stateInput" placeholder="Enter State Code">
-                    <button id="searchButton">Search</button>
-                </div>
+                <h3>Search by city:</h3>
+                <input id="cityInput" placeholder="Ex. Philadelphia">
+                <h3>Search by State Code:</h3>
+                <input id="stateInput" placeholder="Ex. PA">
+                <button id="searchButton">Search</button>
             </section>
             <div class="columns is-mobile">
                 <div id="park-results" class="column is-3">
@@ -67,8 +64,32 @@
                 </div>
             </div>
         </div>
-        <!-- the following lines create search buttons -->
-        <!-- <section class="buttons">
+    </div>
+
+    <div id="input-modal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+           Please enter your city AND state code.
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+    <!-- <div id="empty-data-modal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+           Please enter your city AND state code.
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div> -->
+
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js%22%3E"></script> -->
+
+<!-- the following lines create search buttons -->
+<!-- <section class="buttons">
         <div>
             <h3>Search by city:</h3>
             <input id="cityInput" placeholder="Enter City Name">
@@ -77,8 +98,8 @@
             <button id="searchButton">Search</button>
         </div>
     </section> -->
-        <!-- results section -->
-        <!-- <section class="results">
+<!-- results section -->
+<!-- <section class="results">
             <div id="park-results">
                 <p>hellow</p>
             </div>
@@ -86,16 +107,9 @@
             </div>
         </section>
         favorites section -->
-        <!-- <section class="favorites">
+<!-- <section class="favorites">
             <div id="park-favorites">
             </div>
             <div id="brewery-favorites">
             </div>
-        </section> --> 
-
-
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js%22%3E"></script> -->
-        <script src="./assets/js/script.js"></script>
-</body>
-
-</html>
+        </section> -->
