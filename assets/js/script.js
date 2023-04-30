@@ -35,7 +35,7 @@ function park(stateValue, cityValue) {
         // console.log(data.data[0].fullName);
         // console.log(data.data[0].addresses[0].line1)
 
-        var prUl = document.querySelector()
+        var prUl = document.querySelector('#park-results ul')
 
         for (var i = 0; i < data.data.length; i++) {
             console.log(data.data[i])
@@ -43,8 +43,9 @@ function park(stateValue, cityValue) {
             var praEl = document.createElement('a')
             praEl.textContent = data.data[i].fullName;
             praEl.href = data.data[i].url;
-            parkResults.appendChild(prliEl);
+            prUl.appendChild(prliEl);
             prliEl.appendChild(praEl);
+            //append save button
         }
 
         //parkResults.textContent = data.data[0].fullName
