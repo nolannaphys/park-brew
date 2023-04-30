@@ -29,6 +29,10 @@ h1{
   list-style-type: none;
 }
 
+.description{
+  border: solid black 2px;
+}
+
 /* img {
     opacity: 0.75;
 } */
