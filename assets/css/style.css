@@ -19,6 +19,16 @@ h1{
 .is-info{
     border: solid black 5px;
 }
+
+#park-results, #brewery-results, #park-favorites, #brewery-favorites {
+  visibility: hidden;
+}
+
+
+#park-results ul {
+  list-style-type: none;
+}
+
 /* img {
     opacity: 0.75;
 } */
