@@ -31,16 +31,20 @@ function park(stateValue, cityValue) {
         return response.json();
     })
     .then (function (data) {
-        console.log(data);
+        // console.log(data);
         // console.log(data.data[0].fullName);
         // console.log(data.data[0].addresses[0].line1)
 
+        var prUl = document.querySelector()
+
         for (var i = 0; i < data.data.length; i++) {
             console.log(data.data[i])
-            var prbtnEl = document.createElement('a')
-            prbtnEl.textContent = data.data[i].fullName;
-            prbtnEl.href = data.data[i].url;
-            parkResults.appendChild(prbtnEl);
+            var prliEl = document.createElement('li')
+            var praEl = document.createElement('a')
+            praEl.textContent = data.data[i].fullName;
+            praEl.href = data.data[i].url;
+            parkResults.appendChild(prliEl);
+            prliEl.appendChild(praEl);
         }
 
         //parkResults.textContent = data.data[0].fullName
