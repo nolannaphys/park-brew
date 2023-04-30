@@ -16,6 +16,10 @@ $("#searchButton").on("click", function (event) {
     parkResults.setAttribute('style', 'visibility:visible');
     brewResults.setAttribute('style', 'visibility:visible');
 
+    // How to clear search results after second click???
+    // parkResults.innerHTML = '';
+    // brewResults.innerHTML = '';
+
     var cityValue = $('#cityInput').val();
     var stateValue = $('#stateInput').val();
     park(stateValue, cityValue)
