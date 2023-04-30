@@ -3,8 +3,58 @@
 /* rest of page font */
 @import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap%27');
 
-*{
-    font-family:"ysabeau";
+* {
+  font-family: "ysabeau";
+}
+
+/* styling for header of document */
+img {
+  float: left;
+  height: 200px;
+  width: 300px;
+}
+
+header,
+h1 {
+  font-family: "shrikhand";
+  font-size: 110px;
+  height: 200px;
+  justify-content: center;
+}
+
+.description {
+  border: solid black 2px;
+  text-align: center;
+}
+
+/* main body styling */
+
+.column {
+  display: block;
+}
+
+.is-info {
+  border: solid black 5px;
+}
+
+#park-results,
+#brewery-results,
+#brewery-favorites {
+  visibility: hidden;
+}
+
+#park-results ul,
+#park-favorites ul {
+  list-style-type: none;
+}
+
+.fas {
+  height: auto;
+}
+
+.modal-content {
+  font-size: 30px;
+  color: white;
 }
 
 /* header styling */
@@ -12,46 +62,3 @@
   height: 200px;
   justify-content: space-between;
 } */
-
-header,
-h1{
-    font-family:"shrikhand";
-    font-size: 110px;
-    height: 200px;
-    justify-content: center;
-}
-
-
-img{
-  float: left;
-  height: 200px;
-  width: 300px;  
-}
-
-
-.description{
-  border: solid black 2px;
-  text-align: center;
-}
-
-/* main body styling */
-.is-info{
-    border: solid black 5px;
-}
-
-#park-results, #brewery-results, #park-favorites, #brewery-favorites {
-  visibility: hidden;
-}
-
-
-#park-results ul {
-  list-style-type: none;
-}
-
-
-
-.column {
-    display: block;
-}
-
-
