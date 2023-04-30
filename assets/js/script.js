@@ -38,9 +38,9 @@ function park(stateValue, cityValue) {
         var prUl = document.querySelector('#park-results ul')
 
         for (var i = 0; i < data.data.length; i++) {
-            console.log(data.data[i])
-            var prliEl = document.createElement('li')
-            var praEl = document.createElement('a')
+            // console.log(data.data[i]);
+            var prliEl = document.createElement('li');
+            var praEl = document.createElement('a');
             praEl.textContent = data.data[i].fullName;
             praEl.href = data.data[i].url;
             prUl.appendChild(prliEl);
@@ -66,6 +66,18 @@ function brewery(cityValue) {
             //brewResults.textContent = data[0].name;
             //brewResults.textContent = data[0].address_1 + ' ' + data[0].city
             //brewResults.textContent = data[0].website_url
+
+            var brUl = document.querySelector('#brewery-results ul')
+
+            for (var i = 0; i < data.length; i ++){
+                // console.log(data[i]);
+                var brliEl = document.createElement('li');
+                var braEl = document.createElement('a');
+                braEl.textContent = data[i].name;
+                braEl.href = data[i].website_url;
+                brUl.appendChild(brliEl);
+                brliEl.appendChild(braEl);
+            }
         })
 }
 
