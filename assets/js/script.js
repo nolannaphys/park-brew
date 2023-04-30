@@ -4,13 +4,23 @@ var parkResults = document.querySelector("#park-results")
 //var parkResults = $('#park-results')
 var brewResults = document.querySelector("#brewery-results")
 
-// JS for Brewery API
+// click event for search button 
 $("#searchButton").on("click", function (event) {
-    var cityValue = $("#cityInput").val();
-    brewery(cityValue)
+    event.preventDefault();
 
+    if ($('#cityInput').val() === '' || $('#stateInput').val() === '') {
+        alert ('Please enter your city AND state code.') //replace with modal
+        return;
+    }
+
+    parkResults.setAttribute('style', 'visibility:visible');
+    brewResults.setAttribute('style', 'visibility:visible');
+
+    var cityValue = $('#cityInput').val();
     var stateValue = $('#stateInput').val();
     park(stateValue, cityValue)
+    brewery(cityValue)
+    
 })
 
 
@@ -22,10 +32,18 @@ function park(stateValue, cityValue) {
     })
     .then (function (data) {
         console.log(data);
-        console.log(data.data[0].fullName);
-        console.log(data.data[0].addresses[0].line1)
+        // console.log(data.data[0].fullName);
+        // console.log(data.data[0].addresses[0].line1)
 
-        parkResults.textContent = data.data[0].fullName
+        for (var i = 0; i < data.data.length; i++) {
+            console.log(data.data[i])
+            var prbtnEl = document.createElement('a')
+            prbtnEl.textContent = data.data[i].fullName;
+            prbtnEl.href = data.data[i].url;
+            parkResults.appendChild(prbtnEl);
+        }
+
+        //parkResults.textContent = data.data[0].fullName
         // parkResults.textContent = data.data[0].addresses[0].line1 + ' ' + data.data[0].addresses[0].city
         // parkResults.textContent = data.data[0].url
     })
@@ -38,11 +56,11 @@ function brewery(cityValue) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data)
+            // console.log(data)
 
-            brewResults.textContent = data[0].name;
-            brewResults.textContent = data[0].address_1 + ' ' + data[0].city
-            brewResults.textContent = data[0].website_url
+            //brewResults.textContent = data[0].name;
+            //brewResults.textContent = data[0].address_1 + ' ' + data[0].city
+            //brewResults.textContent = data[0].website_url
         })
 }
 
