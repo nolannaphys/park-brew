@@ -7,11 +7,28 @@
   font-family: "ysabeau";
 }
 
+
 /* styling for header of document */
 img {
   float: left;
-  height: 200px;
-  width: 300px;
+  height: 250px;
+  width: auto;
+  /* padding-right: 20px; */
+}
+
+.header-text{
+  display: flex;
+  /* flex-direction: row-reverse; */
+  justify-content: center;
+  padding-left: 50px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+  margin-top: 50px;
+
 }
 
 header,
