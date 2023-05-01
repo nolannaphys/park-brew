@@ -34,42 +34,45 @@
 
     <br>
 
-    <div class="columns">
-        <div class="column">
-            <p class="description">This is a service for people who love to hike and have a good, refreshing beer
-                afterwards.</p>
-            <section class="buttons">
-                <h3>Search by city:</h3>
-                <input id="cityInput" placeholder="Ex. Philadelphia">
-                <h3>Search by State Code:</h3>
-                <input id="stateInput" placeholder="Ex. PA">
-                <button id="searchButton">Search</button>
-            </section>
-            <div class="columns is-mobile">
-                <div id="park-results" class="column is-3">
-                    <h2 class="bd-notification is-info">National Parks</h2>
+
+    <div>
+        <p class="description">This is a service for people who love to hike and have a good, refreshing beer
+            afterwards.</p>
+    </div>       
+        <section class="buttons">
+            <h3>Search by city:</h3>
+            <input id="cityInput" placeholder="Ex. Philadelphia">
+            <h3>Search by State Code:</h3>
+            <input id="stateInput" placeholder="Ex. PA">
+            <button id="searchButton">Search</button>
+        </section>
+        <div class= "columns">
+            <div id="park-results" class="column">
+                <h2>National Parks</h2>
+                <ul></ul>
+            </div>
+            <div id="brewery-results" class="column">
+                <h2>Breweries</h2>
+                <ul></ul>
+            </div>
+            <div class="columns">
+                <div id="park-favorites" class="column">
+                    <h2>Saved Parks</h2>
                     <ul></ul>
                 </div>
-                <div id="brewery-results" class="column is-3">
-                    <h2 class="bd-notification is-info">Breweries</h2>
-                    <ul></ul>
-                </div>
-                <div id="park-favorites" class="column is-3">
-                    <h2 class="bd-notification is-info">Saved Parks</h2>
-                    <ul></ul>
-                </div>
-                <div id="brewery-favorites" class="column is-3">
-                    <h2 class="bd-notification is-info">Saved Breweries</h2>
+                <div id="brewery-favorites" class="column">
+                    <h2>Saved Breweries</h2>
                     <ul></ul>
                 </div>
             </div>
         </div>
     </div>
 
+
     <div id="input-modal" class="modal">
         <div class="modal-background"></div>
         <div class="modal-content">
-           Please enter your city AND state code.
+            Please enter your city AND state code.
         </div>
         <button class="modal-close is-large" aria-label="close"></button>
     </div>
@@ -84,6 +87,7 @@
 
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
 
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js%22%3E"></script> -->
