@@ -5,6 +5,7 @@
 
 * {
   font-family: "ysabeau";
+  margin: 10px;
 }
 
 
@@ -13,6 +14,7 @@ img {
   float: left;
   height: 250px;
   width: auto;
+  border-radius: 10px;
   /* padding-right: 20px; */
 }
 
@@ -28,7 +30,6 @@ header {
   align-items: center;
   margin-bottom: 50px;
   margin-top: 50px;
-
 }
 
 header,
@@ -41,13 +42,21 @@ h1 {
 
 .description {
   border: solid black 2px;
+  border-radius: 10px;
   text-align: center;
+  font-size: x-large;
+  font-weight: bold;
 }
 
 /* main body styling */
 
+.buttons, .column {
+  font-size: large;
+}
+
 .column {
   display: block;
+  margin: 5px
 }
 
 .is-info {
@@ -58,6 +67,16 @@ h1 {
 #brewery-results,
 #brewery-favorites {
   visibility: hidden;
+}
+
+/* #park-results,
+#brewery-results,
+#park-favorites,
+#brewery-favorites */
+
+.column{
+  border: solid black 2px;
+  border-radius: 10px;
 }
 
 #park-results ul,
