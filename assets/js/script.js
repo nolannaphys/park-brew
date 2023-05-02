@@ -4,6 +4,7 @@ var brewResults = $("#brewery-results");
 var parkFavs = $('#park-favorites');
 var brewFavs = $('#brewery-favorites');
 var parkArray = [];
+var breweryArray = [];
 
 // click event for search button 
 $("#searchButton").on("click", function (event) {
@@ -110,7 +111,7 @@ getParks();
 
 //render saved parks into #park-favorites section of webpage 
 function renderParks() {
-    var pfUl = $('#park-favorites ul')
+    var pfUl = $('#park-favorites ul');
     for (var i = 0; i < parkArray.length; i++) {
         var park = parkArray[i];
         var pfliEl = $('<li>');
@@ -137,18 +138,66 @@ function brewery(cityValue) {
             //brewResults.textContent = data[0].address_1 + ' ' + data[0].city
             //brewResults.textContent = data[0].website_url
 
-            var brUl = document.querySelector('#brewery-results ul')
+            var brUl = $('#brewery-results ul')
 
             for (var i = 0; i < data.length; i++) {
                 // console.log(data[i]);
-                var brliEl = document.createElement('li');
-                var braEl = document.createElement('a');
-                braEl.textContent = data[i].name;
-                braEl.href = data[i].website_url;
-                brUl.appendChild(brliEl);
-                brliEl.appendChild(braEl);
+                var brliEl = $('<li>');
+                var braEl = $('<a>');
+                var brbtnEl = $('<button>');
+                var briEl = $('<i>');
+                braEl.text(data[i].name);
+                braEl.attr('href', data[i].website_url);
+                braEl.attr('target', '_blank');
+                brbtnEl.text('Save');
+                brbtnEl.addClass('brewery-save', 'fas', 'fa-save');
+                brUl.append(brliEl);
+                brliEl.append(braEl)
+                brliEl.append(brbtnEl);
+                braEl.append(briEl);
+
+
+                //add model for empty data set !!!!
+
+
+                 //click event for brewery save buttons
+                brbtnEl.on('click', function (event) {
+                    event.preventDefault;
+                    var breweries = {
+                        name: this.previousElementSibling.textContent,
+                        url: this.previousElementSibling.href
+                    };
+                    breweryArray.push(breweries);
+                    localStorage.setItem('local-breweryArray', JSON.stringify(breweryArray));
+                    renderBreweries();
+                })
             }
         })
 }
 
+//get brewery information out of localstorage
+function getBreweries() {
+    var storedBreweries = Json.parse(localStorage.getItem('local-breweryArray'));
+    if (storedBreweries !== null) {
+        breweryArray = storedBreweries;
+    } else{
+        return;
+    }
+    renderBreweries();
+}
+getBreweries();
 
+// render saved breweries into #brewery-favorites section of webpage
+function renderBreweries() {
+    var bfUl = $('#brewery-favorites ul');
+    for (var i = 0; i < breweryArray.length; i++) {
+        var brewery = breweryArray[i];
+        var bfliEl = $('<li>');
+        var bfaEl = $('<a>');
+        bfaEl.text(brewery.name);
+        bfaEl.attr('href', brewery.url);
+        bfaEl.attr('target', '_blank');
+        bfUl.append(bfliEl);
+        bfliEl.append(bfaEl);
+    }
+}
