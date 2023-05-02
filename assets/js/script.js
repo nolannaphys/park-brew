@@ -32,16 +32,16 @@ $("#searchButton").on("click", function (event) {
 })
 
 //close alert modal for empty city or state
-$('.modal-close').on('click', function() {
+$('.modal-close').on('click', function () {
     $('.modal').removeClass('is-active')
 });
 
 //clear out input fields on click 
-$('#cityInput').on('click', function() {
+$('#cityInput').on('click', function () {
     $('#cityInput').val('');
 });
 
-$('#stateInput').on('click', function() {
+$('#stateInput').on('click', function () {
     $('#stateInput').val('');
 });
 
@@ -59,46 +59,79 @@ function park(stateValue, cityValue) {
 
             var prUl = $('#park-results ul');
 
-            // var i = 0; i < data.data.length; i++
-            for (var i = 0; i < 5; i++) {
-                var random = Math.floor(Math.random(data.data)*data.data.length); //its repeating values from the array
-                console.log(random);
+            //display try the closest metropolitan city??????? 
+            if (!data.data) {
                 var prliEl = $('<li>');
-                var praEl = $('<a>');
-                var prbtnEl = $('<button>');
-                var priEl = $('<i>');
-                praEl.text(data.data[random].fullName);
-                praEl.attr('href', data.data[random].url);
-                praEl.attr('target', '_blank'); 
-                prbtnEl.text('Save');
-                prbtnEl.addClass('park-save')
-                priEl.addClass('fas', 'fa-save'); //save icon not showing up??????
+                prliEl.text('Please try to broaden your search to the closest metropolitan area.');
                 prUl.append(prliEl);
-                prliEl.append(praEl);
-                prliEl.append(prbtnEl);
-                prbtnEl.append(priEl);
+            } else {
+                for (var i = 0; i < 5; i++) {
+                    var random = Math.floor(Math.random(data.data) * data.data.length); //its repeating values from the array
+                    console.log(random);
+                    var prliEl = $('<li>');
+                    var praEl = $('<a>');
+                    var prbtnEl = $('<button>');
+                    var priEl = $('<i>');
+                    praEl.text(data.data[random].fullName);
+                    praEl.attr('href', data.data[random].url);
+                    praEl.attr('target', '_blank');
+                    prbtnEl.text('Save');
+                    prbtnEl.addClass('park-save')
+                    priEl.addClass('fas', 'fa-save'); //save icon not showing up??????
+                    prUl.append(prliEl);
+                    prliEl.append(praEl);
+                    prliEl.append(prbtnEl);
+                    prbtnEl.append(priEl);
 
-                //display try the closest metropolitan city??????? 
-                if (!data.data) {
-                    // $('#empty-data-modal').addClass('is-active'); //is modal better option?????
-                    var prpEl = $('<p>');
-                    prpEl.text('Please try to broaden your search to the closest metropolitan area.');
-                    $('#park-results').append(prpEl);
+                    //click event for park save buttons
+                    prbtnEl.on('click', function (event) {
+                        event.preventDefault;
+                        var parks = {
+                            name: this.previousElementSibling.textContent,
+                            url: this.previousElementSibling.href
+                        };
+                        parkArray.push(parks);
+                        localStorage.setItem('local-parkArray', JSON.stringify(parkArray));
+                        renderParks();
+                    })
+                    //pop or shift the random index out of the data.data array 
                 }
-
-                //click event for park save buttons
-                prbtnEl.on('click', function (event) {
-                    event.preventDefault;
-                    var parks = {
-                        name: this.previousElementSibling.textContent,
-                        url: this.previousElementSibling.href
-                    };
-                    parkArray.push(parks);
-                    localStorage.setItem('local-parkArray', JSON.stringify(parkArray));
-                    renderParks();
-                })
-                //pop or shift the random index out of the data.data array 
             }
+
+            // var i = 0; i < data.data.length; i++
+            // for (var i = 0; i < 5; i++) {
+            //     var random = Math.floor(Math.random(data.data) * data.data.length); //its repeating values from the array
+            //     console.log(random);
+            //     var prliEl = $('<li>');
+            //     var praEl = $('<a>');
+            //     var prbtnEl = $('<button>');
+            //     var priEl = $('<i>');
+            //     praEl.text(data.data[random].fullName);
+            //     praEl.attr('href', data.data[random].url);
+            //     praEl.attr('target', '_blank');
+            //     prbtnEl.text('Save');
+            //     prbtnEl.addClass('park-save')
+            //     priEl.addClass('fas', 'fa-save'); //save icon not showing up??????
+            //     prUl.append(prliEl);
+            //     prliEl.append(praEl);
+            //     prliEl.append(prbtnEl);
+            //     prbtnEl.append(priEl);
+
+
+
+            //     //click event for park save buttons
+            //     prbtnEl.on('click', function (event) {
+            //         event.preventDefault;
+            //         var parks = {
+            //             name: this.previousElementSibling.textContent,
+            //             url: this.previousElementSibling.href
+            //         };
+            //         parkArray.push(parks);
+            //         localStorage.setItem('local-parkArray', JSON.stringify(parkArray));
+            //         renderParks();
+            //     })
+            //     //pop or shift the random index out of the data.data array 
+            // }
         })
 }
 
@@ -138,11 +171,6 @@ function brewery(cityValue) {
             return response.json();
         })
         .then(function (data) {
-            // console.log(data)
-
-            //brewResults.textContent = data[0].name;
-            //brewResults.textContent = data[0].address_1 + ' ' + data[0].city
-            //brewResults.textContent = data[0].website_url
 
             var brUl = $('#brewery-results ul')
 
@@ -156,17 +184,18 @@ function brewery(cityValue) {
                 braEl.attr('href', data[i].website_url);
                 braEl.attr('target', '_blank');
                 brbtnEl.text('Save');
-                brbtnEl.addClass('brewery-save', 'fas', 'fa-save');
+                brbtnEl.addClass('brewery-save');
+                briEl.addClass('fas', 'fa-save');
                 brUl.append(brliEl);
-                brliEl.append(braEl)
+                brliEl.append(braEl);
                 brliEl.append(brbtnEl);
-                braEl.append(briEl);
+                brbtnEl.append(briEl);
 
 
                 //add model for empty data set !!!!
 
 
-                 //click event for brewery save buttons
+                //click event for brewery save buttons
                 brbtnEl.on('click', function (event) {
                     event.preventDefault;
                     var breweries = {
@@ -186,7 +215,7 @@ function getBreweries() {
     var storedBreweries = JSON.parse(localStorage.getItem('local-breweryArray'));
     if (storedBreweries !== null) {
         breweryArray = storedBreweries;
-    } else{
+    } else {
         return;
     }
     renderBreweries();
