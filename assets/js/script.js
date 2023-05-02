@@ -177,7 +177,7 @@ function brewery(cityValue) {
 
 //get brewery information out of localstorage
 function getBreweries() {
-    var storedBreweries = Json.parse(localStorage.getItem('local-breweryArray'));
+    var storedBreweries = JSON.parse(localStorage.getItem('local-breweryArray'));
     if (storedBreweries !== null) {
         breweryArray = storedBreweries;
     } else{
