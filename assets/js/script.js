@@ -14,6 +14,10 @@ $("#searchButton").on("click", function (event) {
         $('#input-modal').addClass('is-active');
         return;
     }
+
+    $('#park-results ul').html('');
+    $('#brewery-results ul').html('');
+
     //fetch data
     parkResults.attr('style', 'visibility:visible');
     brewResults.attr('style', 'visibility:visible');
@@ -57,14 +61,14 @@ function park(stateValue, cityValue) {
 
             // var i = 0; i < data.data.length; i++
             for (var i = 0; i < 5; i++) {
-                // var random = data.data[Math.floor(Math.random()*data.data.length)]; //its repeating values from the array
-                // console.log(random);
+                var random = Math.floor(Math.random(data.data)*data.data.length); //its repeating values from the array
+                console.log(random);
                 var prliEl = $('<li>');
                 var praEl = $('<a>');
                 var prbtnEl = $('<button>');
                 var priEl = $('<i>');
-                praEl.text(data.data[i].fullName);
-                praEl.attr('href', data.data[i].url);
+                praEl.text(data.data[random].fullName);
+                praEl.attr('href', data.data[random].url);
                 praEl.attr('target', '_blank'); 
                 prbtnEl.text('Save');
                 prbtnEl.addClass('park-save')
@@ -75,7 +79,7 @@ function park(stateValue, cityValue) {
                 prbtnEl.append(priEl);
 
                 //display try the closest metropolitan city??????? 
-                if (data.data === []) {
+                if (!data.data) {
                     // $('#empty-data-modal').addClass('is-active'); //is modal better option?????
                     var prpEl = $('<p>');
                     prpEl.text('Please try to broaden your search to the closest metropolitan area.');
@@ -93,6 +97,7 @@ function park(stateValue, cityValue) {
                     localStorage.setItem('local-parkArray', JSON.stringify(parkArray));
                     renderParks();
                 })
+                //pop or shift the random index out of the data.data array 
             }
         })
 }
@@ -112,6 +117,7 @@ getParks();
 //render saved parks into #park-favorites section of webpage 
 function renderParks() {
     var pfUl = $('#park-favorites ul');
+    pfUl.html('');
     for (var i = 0; i < parkArray.length; i++) {
         var park = parkArray[i];
         var pfliEl = $('<li>');
@@ -190,6 +196,7 @@ getBreweries();
 // render saved breweries into #brewery-favorites section of webpage
 function renderBreweries() {
     var bfUl = $('#brewery-favorites ul');
+    bfUl.html('');
     for (var i = 0; i < breweryArray.length; i++) {
         var brewery = breweryArray[i];
         var bfliEl = $('<li>');
