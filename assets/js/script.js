@@ -60,20 +60,25 @@ function park(stateValue, cityValue) {
             var prUl = $('#park-results ul');
 
             //display try the closest metropolitan city??????? 
-            if (!data.data) {
+            if (data.data.length===0) {console.log ("error")
                 var prliEl = $('<li>');
                 prliEl.text('Please try to broaden your search to the closest metropolitan area.');
                 prUl.append(prliEl);
             } else {
-                for (var i = 0; i < 5; i++) {
-                    var random = Math.floor(Math.random(data.data) * data.data.length); //its repeating values from the array
-                    console.log(random);
+                var listParks=[...data.data];
+                var outParks= [];
+                for (var i = 0; i < 5 && listParks.length > 0; i++){
+                    var random = Math.floor(Math.random(listParks) * listParks.length);
+                    outParks.push(listParks[random])
+                    listParks.splice(random, 1); // 2nd parameter means remove one item only
+                }
+                for (var i = 0; i < outParks.length; i++) {
                     var prliEl = $('<li>');
                     var praEl = $('<a>');
                     var prbtnEl = $('<button>');
                     var priEl = $('<i>');
-                    praEl.text(data.data[random].fullName);
-                    praEl.attr('href', data.data[random].url);
+                    praEl.text(outParks[i].fullName);
+                    praEl.attr('href', outParks[i].url);
                     praEl.attr('target', '_blank');
                     prbtnEl.text('Save');
                     prbtnEl.addClass('park-save')
