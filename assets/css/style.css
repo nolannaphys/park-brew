@@ -98,8 +98,23 @@ h1 {
   color: white;
 }
 
-/* header styling */
-/* header{
-  height: 200px;
-  justify-content: space-between;
-} */
+@media screen and (max-width: 992px){
+  h1{
+    font-size: 55px;
+  }
+  .description{
+    font-size: medium;
+  }
+}
+  
+
+
+@media screen and (max-width: 576px) {
+  h1{
+    font-size: 55px;
+  }
+  .description{
+    font-size: medium;
+  }
+  
+}
