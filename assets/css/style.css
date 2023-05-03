@@ -19,12 +19,10 @@ img {
   height: 250px;
   width: auto;
   border-radius: 10px;
-  /* padding-right: 20px; */
 }
 
 .header-text{
   display: flex;
-  /* flex-direction: row-reverse; */
   justify-content: center;
   padding-left: 50px;
 }
@@ -56,14 +54,22 @@ h1 {
 
 /* main body styling */
 
+h3{
+  margin: 10px;
+}
+
 .buttons, .column {
   font-size: large;
 }
 
+
 .column {
   display: block;
-  margin: 5px
+  margin: 5px;
+  border: solid black 2px;
+  border-radius: 10px;
 }
+
 
 .is-info {
   border: solid black 5px;
@@ -72,16 +78,6 @@ h1 {
 #park-results,
 #brewery-results {
   visibility: hidden;
-}
-
-/* #park-results,
-#brewery-results,
-#park-favorites,
-#brewery-favorites */
-
-.column{
-  border: solid black 2px;
-  border-radius: 10px;
 }
 
 #park-results ul,
@@ -98,23 +94,34 @@ h1 {
   color: white;
 }
 
+.fa-save {
+  margin: 0px;
+}
+
 @media screen and (max-width: 992px){
   h1{
     font-size: 55px;
+    display: flex;
+    align-items: center;
   }
   .description{
     font-size: medium;
   }
+
 }
   
 
-
 @media screen and (max-width: 576px) {
   h1{
-    font-size: 55px;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
   }
   .description{
     font-size: medium;
+  }
+  .buttons{
+    flex-direction: column;
   }
   
 }
