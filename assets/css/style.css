@@ -54,18 +54,24 @@ h1 {
 
 /* main body styling */
 
+h2{
+  font-weight: bold;
+}
+
 h3{
   margin: 10px;
 }
 
 .buttons, .column {
   font-size: large;
+  display: flex;
+  justify-content: center
 }
 
 
 .column {
   display: block;
-  margin: 5px;
+  margin: 20px;
   border: solid black 2px;
   border-radius: 10px;
 }
