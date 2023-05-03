@@ -6,70 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Park Brew</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
+    <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- bulma css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- jquery .js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 
 <body>
+    <!-- header with title of webpage and image -->
     <header>
-        <!-- adds picture of beer outside -->
         <img src="./assets/images/beer-outside.jpeg" alt="beer outside on a park bench overlooking mountains">
-        <div class="header-text">
-            <!-- header and mission statement -->
-            <h1>Park Brew</h1>
-            <!-- <p>This is a service for people who love to hike and have a good, refreshing beer afterwards.</p> -->
-        </div>
-
+        <h1>Park Brew</h1>
     </header>
-
-    <!-- <div class="background">
-        <div class="transbox">
-            <p>This is some text that is placed in the transparent box.</p>
-        </div>
-    </div> -->
-
-    <br>
-
-
+    <!-- webpage description -->
     <div>
         <p class="description">This is a service for people who love to hike and have a refreshing beer
             afterwards.</p>
-    </div>       
-        <section class="buttons">
-            <h3>Search by city:</h3>
-            <input id="cityInput" placeholder="Ex. Philadelphia">
-            <h3>Search by State Code:</h3>
-            <input id="stateInput" placeholder="Ex. PA">
-            <button id="searchButton">Search</button>
-        </section>
-        <div class= "columns">
-            <div id="park-results" class="column">
-                <h2>National Parks</h2>
-                <ul></ul>
-            </div>
-            <div id="park-favorites" class="column">
-                <h2>Saved Parks</h2>
-                <ul></ul>
-            </div>
-        </div>
-            <div class="columns">
-                <div id="brewery-results" class="column">
-                    <h2>Breweries</h2>
-                    <ul></ul>
-                </div>
-                <div id="brewery-favorites" class="column">
-                    <h2>Saved Breweries</h2>
-                    <ul></ul>
-                </div>
-            </div>
-        </div>
     </div>
 
+    <!-- search button -->
+    <section class="buttons">
+        <h3>Search by city:</h3>
+        <input id="cityInput" placeholder="Ex. Philadelphia">
+        <h3>Search by State Code:</h3>
+        <input id="stateInput" placeholder="Ex. PA">
+        <button id="searchButton">Search</button>
+    </section>
 
+    <!-- empty input modal -->
     <div id="input-modal" class="modal">
         <div class="modal-background"></div>
         <div class="modal-content">
@@ -78,43 +46,33 @@
         <button class="modal-close is-large" aria-label="close"></button>
     </div>
 
-    <!-- <div id="empty-data-modal" class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-           Please enter your city AND state code.
+    <!-- park results and favorites columns -->
+    <div class="columns">
+        <div id="park-results" class="column">
+            <h2>National Parks</h2>
+            <ul></ul>
         </div>
-        <button class="modal-close is-large" aria-label="close"></button>
-    </div> -->
+        <div id="park-favorites" class="column">
+            <h2>Saved Parks</h2>
+            <ul></ul>
+        </div>
+    </div>
+
+    <!-- brewery results and favorites columns -->
+    <div class="columns">
+        <div id="brewery-results" class="column">
+            <h2>Breweries</h2>
+            <ul></ul>
+        </div>
+        <div id="brewery-favorites" class="column">
+            <h2>Saved Breweries</h2>
+            <ul></ul>
+        </div>
+    </div>
+
+    <!-- font awesome js -->
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
-
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js%22%3E"></script> -->
-
-<!-- the following lines create search buttons -->
-<!-- <section class="buttons">
-        <div>
-            <h3>Search by city:</h3>
-            <input id="cityInput" placeholder="Enter City Name">
-            <h3>Search by State Code:</h3>
-            <input id="stateInput" placeholder="Enter State Code">
-            <button id="searchButton">Search</button>
-        </div>
-    </section> -->
-<!-- results section -->
-<!-- <section class="results">
-            <div id="park-results">
-                <p>hellow</p>
-            </div>
-            <div id="brewery-results">
-            </div>
-        </section>
-        favorites section -->
-<!-- <section class="favorites">
-            <div id="park-favorites">
-            </div>
-            <div id="brewery-favorites">
-            </div>
-        </section> -->
