@@ -48,6 +48,7 @@ function park(stateValue, cityValue) {
             return response.json();
         })
         .then(function (data) {
+            console.log(data);
             var prUl = $('#park-results ul');
             if (data.data.length === 0) {
                 var prliEl = $('<li>');
@@ -57,9 +58,9 @@ function park(stateValue, cityValue) {
                 var listParks = [...data.data];
                 var outParks = [];
                 for (var i = 0; i < 5 && listParks.length > 0; i++) {
-                    var random = Math.floor(Math.random(listParks) * listParks.length);
-                    outParks.push(listParks[random])
-                    listParks.splice(random, 1); // 2nd parameter means remove one item only
+                    var randomParks = Math.floor(Math.random(listParks) * listParks.length);
+                    outParks.push(listParks[randomParks]);
+                    listParks.splice(randomParks, 1); // 2nd parameter means remove one item only
                 }
                 for (var i = 0; i < outParks.length; i++) {
                     var prliEl = $('<li>');
@@ -109,6 +110,7 @@ getParks();
 
 //render saved parks into #park-favorites section of webpage 
 function renderParks() {
+    parkFavs.attr('style', 'display:block');
     var pfUl = $('#park-favorites ul');
     pfUl.html('');
     for (var i = 0; i < parkArray.length; i++) {
@@ -194,6 +196,7 @@ getBreweries();
 
 // render saved breweries into #brewery-favorites section of webpage
 function renderBreweries() {
+    brewFavs.attr('style', 'display:block');
     var bfUl = $('#brewery-favorites ul');
     bfUl.html('');
     for (var i = 0; i < breweryArray.length; i++) {
