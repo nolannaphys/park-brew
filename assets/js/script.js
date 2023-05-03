@@ -19,16 +19,12 @@ $("#searchButton").on("click", function (event) {
     $('#brewery-results ul').html('');
 
     //fetch data
-    parkResults.attr('style', 'visibility:visible');
-    brewResults.attr('style', 'visibility:visible');
+    parkResults.attr('style', 'display:block');
+    brewResults.attr('style', 'display:block');
     var cityValue = $('#cityInput').val();
     var stateValue = $('#stateInput').val();
     park(stateValue, cityValue);
     brewery(cityValue);
-
-    // How to clear search results after second click???
-    // parkResults.innerHTML = '';
-    // brewResults.innerHTML = '';
 })
 
 //close alert modal for empty city or state
@@ -46,20 +42,13 @@ $('#stateInput').on('click', function () {
 });
 
 // fetch for parks API data to append to webpage
-// `https://developer.nps.gov/api/v1/parks?stateCode=${stateValue}&limit=5&q=${cityValue}&api_key=nsqq7nIIHbeaGT4DasDU3QLDbqazbcJTW8zA7SWb`
 function park(stateValue, cityValue) {
     fetch(`https://developer.nps.gov/api/v1/parks?stateCode=${stateValue}&q=${cityValue}&api_key=nsqq7nIIHbeaGT4DasDU3QLDbqazbcJTW8zA7SWb`)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
-            // console.log(data.data[0].fullName);
-            // console.log(data.data[0].addresses[0].line1)
-
             var prUl = $('#park-results ul');
-
-            //display try the closest metropolitan city??????? 
             if (data.data.length === 0) {
                 var prliEl = $('<li>');
                 prliEl.text('No results found');
@@ -80,34 +69,29 @@ function park(stateValue, cityValue) {
                     praEl.text(outParks[i].fullName);
                     praEl.attr('href', outParks[i].url);
                     praEl.attr('target', '_blank');
-                    // prbtnEl.text('Save');
                     prbtnEl.addClass('park-save')
-                    priEl.addClass('fas fa-save'); //save icon not showing up??????
+                    priEl.addClass('fas fa-save');
                     prUl.append(prliEl);
                     prliEl.append(praEl);
                     prliEl.append(prbtnEl);
                     prbtnEl.append(priEl);
 
+                    //change link color
+                    praEl.on('click', visited);
+
                     //click event for park save buttons
                     prbtnEl.on('click', function (event) {
                         event.preventDefault;
                         var parks = {
-                            name: this.previousElementSibling.textContent,
+                            name: this.previousElementSibling.textContent, 
                             url: this.previousElementSibling.href
                         };
                         parkArray.push(parks);
                         localStorage.setItem('local-parkArray', JSON.stringify(parkArray));
                         renderParks();
                     })
-                    //pop or shift the random index out of the data.data array 
                 }
             }
-
-
-
-
-
-
         })
 }
 
@@ -136,20 +120,20 @@ function renderParks() {
         pfaEl.attr('target', '_blank');
         pfUl.append(pfliEl);
         pfliEl.append(pfaEl);
+        //change link color
+        pfaEl.on('click', visited);
     }
 
 }
 
 // get values from brewery API once the city is entered and button is clicked
 function brewery(cityValue) {
-    fetch(`https://api.openbrewerydb.org/v1/breweries?by_city=${cityValue}&per_page=5`)
+    fetch(`https://api.openbrewerydb.org/v1/breweries?by_city=${cityValue}`)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-
             var brUl = $('#brewery-results ul')
-
             if (data.length === 0) {
                 var brliEl = $('<li>');
                 brliEl.text('No results found');
@@ -163,7 +147,6 @@ function brewery(cityValue) {
                     listBreweries.splice(randomBreweries, 1);
                 }
                 for (var i = 0; i < outBreweries.length; i++) {
-                    // console.log(data[i]);
                     var brliEl = $('<li>');
                     var braEl = $('<a>');
                     var brbtnEl = $('<button>');
@@ -171,7 +154,6 @@ function brewery(cityValue) {
                     braEl.text(outBreweries[i].name);
                     braEl.attr('href', outBreweries[i].website_url);
                     braEl.attr('target', '_blank');
-                    // brbtnEl.text('');
                     brbtnEl.addClass('brewery-save');
                     briEl.addClass('fas fa-save');
                     brUl.append(brliEl);
@@ -179,6 +161,10 @@ function brewery(cityValue) {
                     brliEl.append(brbtnEl);
                     brbtnEl.append(briEl);
 
+                    //click event to change link color
+                    braEl.on('click', visited);
+
+                    //save button event
                     brbtnEl.on('click', function (event) {
                         event.preventDefault;
                         var breweries = {
@@ -219,5 +205,12 @@ function renderBreweries() {
         bfaEl.attr('target', '_blank');
         bfUl.append(bfliEl);
         bfliEl.append(bfaEl);
+        //click event to change link color
+        bfaEl.on('click', visited);
     }
+}
+
+//change text color of link when clicked
+function visited() {
+    $(this).addClass('visited');
 }

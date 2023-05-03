@@ -3,17 +3,34 @@
 /* rest of page font */
 @import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap%27');
 
-* {
-  font-family: "ysabeau";
-  margin: 10px;
-}
-
+/* styling for full webpage */
 html {
   background-color: antiquewhite;
 }
 
+body {
+  font-family: "ysabeau";
+  margin: 20px;
+}
 
 /* styling for header of document */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  background-color: goldenrod;
+  height: 200px;
+}
+
+h1 {
+  font-family: "shrikhand";
+  color: white;
+  font-size: 110px;
+  padding-left: 50px;
+}
+
 img {
   float: left;
   height: 250px;
@@ -21,29 +38,7 @@ img {
   border-radius: 10px;
 }
 
-.header-text{
-  display: flex;
-  justify-content: center;
-  padding-left: 50px;
-}
-
-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 50px;
-  margin-top: 50px;
-  background-color: goldenrod;
-}
-
-header,
-h1 {
-  font-family: "shrikhand";
-  color: white;
-  font-size: 110px;
-  height: 200px;
-  justify-content: center;
-}
-
+/* main body styling */
 .description {
   border: solid black 2px;
   border-radius: 10px;
@@ -52,22 +47,21 @@ h1 {
   font-weight: bold;
 }
 
-/* main body styling */
-
-h2{
-  font-weight: bold;
-}
-
-h3{
+h3 {
   margin: 10px;
 }
 
-.buttons, .column {
+.modal-content {
+  font-size: 30px;
+  color: white;
+}
+
+.buttons,
+.column {
   font-size: large;
   display: flex;
   justify-content: center
 }
-
 
 .column {
   display: block;
@@ -76,14 +70,13 @@ h3{
   border-radius: 10px;
 }
 
-
-.is-info {
-  border: solid black 5px;
+h2 {
+  font-weight: bold;
 }
 
 #park-results,
 #brewery-results {
-  visibility: hidden;
+  display: none;
 }
 
 #park-results ul,
@@ -91,43 +84,114 @@ h3{
   list-style-type: none;
 }
 
-.fas {
-  height: auto;
-}
-
-.modal-content {
-  font-size: 30px;
-  color: white;
+.park-save,
+.brewery-save {
+  float: right;
+  background-color: lightgoldenrodyellow;
 }
 
 .fa-save {
   margin: 0px;
 }
 
-@media screen and (max-width: 992px){
-  h1{
-    font-size: 55px;
-    display: flex;
-    align-items: center;
-  }
-  .description{
-    font-size: medium;
-  }
-
+a.visited {
+  color: #af64f6;
 }
-  
 
-@media screen and (max-width: 576px) {
-  h1{
-    font-size: 30px;
+/* media query where page formatting breaks */
+@media screen and (max-width: 1061px) {
+  h1 {
+    font-size: 95px;
+  }
+}
+
+/* media query for tablets */
+@media screen and (max-width: 992px) {
+  header {
     display: flex;
     align-items: center;
   }
-  .description{
+
+  h1 {
+    font-size: 85px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding-left: 20px;
+  }
+
+  img {
+    margin-left: 30px;
+  }
+
+  .description {
     font-size: medium;
   }
-  .buttons{
+}
+
+/* media query where formatting breaks */
+@media screen and (max-width: 916px) {
+  h1 {
+    font-size: 65px;
+  }
+}
+
+/* media query where formatting breaks */
+@media screen and (max-width: 653px) {
+  header {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    background-color: antiquewhite;
+  }
+
+  h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 55px;
+    background-color: goldenrod;
+    width: 100%;
+    padding-right: 50px;
+    padding-left: 50px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+
+  .description {
+    font-size: medium;
+    margin-top: 40px;
+  }
+}
+
+/* media query for phones */
+@media screen and (max-width: 556px) {
+  header {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    background-color: antiquewhite;
+  }
+
+  h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 55px;
+    background-color: goldenrod;
+    width: 100%;
+    padding-right: 50px;
+    padding-left: 50px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+
+  .description {
+    font-size: medium;
+    margin-top: 110px;
+  }
+
+  .buttons {
     flex-direction: column;
   }
-  
 }
