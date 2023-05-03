@@ -80,9 +80,9 @@ function park(stateValue, cityValue) {
                     praEl.text(outParks[i].fullName);
                     praEl.attr('href', outParks[i].url);
                     praEl.attr('target', '_blank');
-                    prbtnEl.text('Save');
+                    // prbtnEl.text('Save');
                     prbtnEl.addClass('park-save')
-                    priEl.addClass('fas', 'fa-save'); //save icon not showing up??????
+                    priEl.addClass('fas fa-save'); //save icon not showing up??????
                     prUl.append(prliEl);
                     prliEl.append(praEl);
                     prliEl.append(prbtnEl);
