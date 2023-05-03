@@ -60,14 +60,14 @@ function park(stateValue, cityValue) {
             var prUl = $('#park-results ul');
 
             //display try the closest metropolitan city??????? 
-            if (data.data.length===0) {console.log ("error")
+            if (data.data.length === 0) {
                 var prliEl = $('<li>');
-                prliEl.text('Please try to broaden your search to the closest metropolitan area.');
+                prliEl.text('No results found');
                 prUl.append(prliEl);
             } else {
-                var listParks=[...data.data];
-                var outParks= [];
-                for (var i = 0; i < 5 && listParks.length > 0; i++){
+                var listParks = [...data.data];
+                var outParks = [];
+                for (var i = 0; i < 5 && listParks.length > 0; i++) {
                     var random = Math.floor(Math.random(listParks) * listParks.length);
                     outParks.push(listParks[random])
                     listParks.splice(random, 1); // 2nd parameter means remove one item only
@@ -103,40 +103,11 @@ function park(stateValue, cityValue) {
                 }
             }
 
-            // var i = 0; i < data.data.length; i++
-            // for (var i = 0; i < 5; i++) {
-            //     var random = Math.floor(Math.random(data.data) * data.data.length); //its repeating values from the array
-            //     console.log(random);
-            //     var prliEl = $('<li>');
-            //     var praEl = $('<a>');
-            //     var prbtnEl = $('<button>');
-            //     var priEl = $('<i>');
-            //     praEl.text(data.data[random].fullName);
-            //     praEl.attr('href', data.data[random].url);
-            //     praEl.attr('target', '_blank');
-            //     prbtnEl.text('Save');
-            //     prbtnEl.addClass('park-save')
-            //     priEl.addClass('fas', 'fa-save'); //save icon not showing up??????
-            //     prUl.append(prliEl);
-            //     prliEl.append(praEl);
-            //     prliEl.append(prbtnEl);
-            //     prbtnEl.append(priEl);
 
 
 
-            //     //click event for park save buttons
-            //     prbtnEl.on('click', function (event) {
-            //         event.preventDefault;
-            //         var parks = {
-            //             name: this.previousElementSibling.textContent,
-            //             url: this.previousElementSibling.href
-            //         };
-            //         parkArray.push(parks);
-            //         localStorage.setItem('local-parkArray', JSON.stringify(parkArray));
-            //         renderParks();
-            //     })
-            //     //pop or shift the random index out of the data.data array 
-            // }
+
+
         })
 }
 
@@ -179,38 +150,46 @@ function brewery(cityValue) {
 
             var brUl = $('#brewery-results ul')
 
-            for (var i = 0; i < data.length; i++) {
-                // console.log(data[i]);
+            if (data.length === 0) {
                 var brliEl = $('<li>');
-                var braEl = $('<a>');
-                var brbtnEl = $('<button>');
-                var briEl = $('<i>');
-                braEl.text(data[i].name);
-                braEl.attr('href', data[i].website_url);
-                braEl.attr('target', '_blank');
-                brbtnEl.text('Save');
-                brbtnEl.addClass('brewery-save');
-                briEl.addClass('fas', 'fa-save');
+                brliEl.text('No results found');
                 brUl.append(brliEl);
-                brliEl.append(braEl);
-                brliEl.append(brbtnEl);
-                brbtnEl.append(briEl);
+            } else {
+                var listBreweries = [...data];
+                var outBreweries = [];
+                for (var i = 0; i < 5 && listBreweries.length > 0; i++) {
+                    var randomBreweries = Math.floor(Math.random(listBreweries) * listBreweries.length);
+                    outBreweries.push(listBreweries[randomBreweries]);
+                    listBreweries.splice(randomBreweries, 1);
+                }
+                for (var i = 0; i < outBreweries.length; i++) {
+                    // console.log(data[i]);
+                    var brliEl = $('<li>');
+                    var braEl = $('<a>');
+                    var brbtnEl = $('<button>');
+                    var briEl = $('<i>');
+                    braEl.text(outBreweries[i].name);
+                    braEl.attr('href', outBreweries[i].website_url);
+                    braEl.attr('target', '_blank');
+                    // brbtnEl.text('');
+                    brbtnEl.addClass('brewery-save');
+                    briEl.addClass('fas fa-save');
+                    brUl.append(brliEl);
+                    brliEl.append(braEl);
+                    brliEl.append(brbtnEl);
+                    brbtnEl.append(briEl);
 
-
-                //add model for empty data set !!!!
-
-
-                //click event for brewery save buttons
-                brbtnEl.on('click', function (event) {
-                    event.preventDefault;
-                    var breweries = {
-                        name: this.previousElementSibling.textContent,
-                        url: this.previousElementSibling.href
-                    };
-                    breweryArray.push(breweries);
-                    localStorage.setItem('local-breweryArray', JSON.stringify(breweryArray));
-                    renderBreweries();
-                })
+                    brbtnEl.on('click', function (event) {
+                        event.preventDefault;
+                        var breweries = {
+                            name: this.previousElementSibling.textContent,
+                            url: this.previousElementSibling.href
+                        };
+                        breweryArray.push(breweries);
+                        localStorage.setItem('local-breweryArray', JSON.stringify(breweryArray));
+                        renderBreweries();
+                    })
+                }
             }
         })
 }
