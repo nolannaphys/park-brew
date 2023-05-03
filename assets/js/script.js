@@ -48,7 +48,6 @@ function park(stateValue, cityValue) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
             var prUl = $('#park-results ul');
             if (data.data.length === 0) {
                 var prliEl = $('<li>');
@@ -84,8 +83,8 @@ function park(stateValue, cityValue) {
                     prbtnEl.on('click', function (event) {
                         event.preventDefault;
                         var parks = {
-                            name: this.previousElementSibling.textContent, 
-                            url: this.previousElementSibling.href
+                            name: $(this).prev('a').text(), 
+                            url: $(this).prev('a').attr('href')
                         };
                         parkArray.push(parks);
                         localStorage.setItem('local-parkArray', JSON.stringify(parkArray));
@@ -170,8 +169,8 @@ function brewery(cityValue) {
                     brbtnEl.on('click', function (event) {
                         event.preventDefault;
                         var breweries = {
-                            name: this.previousElementSibling.textContent,
-                            url: this.previousElementSibling.href
+                            name: $(this).prev('a').text(), 
+                            url: $(this).prev('a').attr('href')
                         };
                         breweryArray.push(breweries);
                         localStorage.setItem('local-breweryArray', JSON.stringify(breweryArray));
